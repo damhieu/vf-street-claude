@@ -196,10 +196,22 @@ body.touch .hud .dist { bottom: 170px; }
 body.touch .hud canvas.minimap { bottom: 220px; }
 body.touch .menu .keys { display: none; }
 #fs-btn { position: absolute; right: 18px; top: 18px; z-index: 6; width: 52px; height: 44px; padding: 0; font-size: 22px; background: rgba(0, 0, 0, 0.35); color: #fff; border-color: rgba(255, 255, 255, 0.35); }
-#fs-tip { position: absolute; inset: 0; z-index: 7; display: flex; align-items: center; justify-content: center; background: rgba(11, 12, 16, 0.85); }
-#fs-tip .box { max-width: 560px; padding: 28px 32px; background: var(--card); border: 1px solid var(--line-strong); text-align: center; }
-#fs-tip h3 { margin: 0 0 12px; font-family: var(--display); font-size: 30px; text-transform: uppercase; }
-#fs-tip p { font-size: 17px; line-height: 1.5; color: var(--muted); margin: 0 0 20px; }
-#fs-tip b { color: var(--text); }
 #rotate-hint { display: none; position: fixed; inset: 0; z-index: 20; align-items: center; justify-content: center; background: var(--bg); color: var(--text); font-family: var(--display); font-size: 28px; text-align: center; line-height: 1.4; text-transform: uppercase; }
 @media (orientation: portrait) { body.touch #rotate-hint { display: flex; } }
+
+/* ===== Hướng dẫn chơi trên điện thoại ===== */
+.touch-only { display: none; }
+body.touch .touch-only { display: inline-block; }
+.guide { padding: 18px 40px; background: rgba(11, 12, 16, 0.35); }
+.guide .box { max-width: 1000px; padding: 20px 36px 22px; background: rgba(15, 17, 23, 0.78); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 14px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); text-align: center; }
+.guide h2 { font-size: 48px; margin: 0 0 6px; }
+.guide .cols { display: flex; gap: 40px; text-align: left; }
+.guide .col { flex: 1; min-width: 0; }
+.guide .tip { margin: 0 0 4px; font-size: 15px; line-height: 1.45; color: var(--muted); }
+.guide .tip b { color: var(--accent); }
+.guide .os { margin: 8px 0 2px; font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: 0.04em; color: #f2c020; }
+.guide .os.small { font-size: 16px; margin-top: 10px; }
+.guide ol { margin: 0; padding-left: 22px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+.guide ol b { color: #f2c020; }
+.guide .ico { width: 17px; height: 17px; vertical-align: -3px; color: #f2c020; }
+.guide .actions { margin-top: 14px; }

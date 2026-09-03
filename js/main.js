@@ -54,6 +54,7 @@ const ui = createUI(document.getElementById('ui'), {
   toTracks: () => { refreshTracks(); show('tracks'); },
   toSettings: () => { ui.setSettings(store.settings); show('settings'); },
   toCredits: () => show('credits'),
+  toGuide: () => show('guide'),
   pickCar(id) { app.carId = id; app.paint = carById(id).paints[0].hex; refreshCars(); },
   pickPaint(hex) { app.paint = hex; refreshCars(); },
   pickTrack(id) { app.trackId = id; refreshTracks(); },
@@ -62,7 +63,7 @@ const ui = createUI(document.getElementById('ui'), {
   resume: () => { app.paused = false; show('race'); },
   back(screen) {
     if (screen === 'menu') return;
-    if (screen === 'cars' || screen === 'credits' || screen === 'settings') show('menu');
+    if (screen === 'cars' || screen === 'credits' || screen === 'settings' || screen === 'guide') show('menu');
     else if (screen === 'tracks') { refreshCars(); show('cars'); }
     else if (screen === 'pause') { app.paused = false; show('race'); }
     else if (screen === 'result') { refreshTracks(); show('tracks'); }
@@ -73,11 +74,16 @@ const ui = createUI(document.getElementById('ui'), {
 const touch = createTouch(input, {
   pause: () => { if (ui.current === 'race' && app.race && !app.race.finished) { app.paused = true; show('pause'); } },
   gesture: () => audio.start(),
-  enabled: () => { touch.setRacing(ui.current === 'race'); fsBtn.classList.toggle('hidden', !(!isStandalone() && ui.current === 'menu')); fitStage(); },
+  enabled: () => { touch.setRacing(ui.current === 'race'); fsBtn.classList.toggle('hidden', !(!isStandalone() && ui.current === 'menu')); fitStage(); maybeShowGuide(); },
 });
-const fsBtn = document.getElementById('fs-btn'), fsTip = document.getElementById('fs-tip');
-fsBtn.addEventListener('click', () => { audio.start(); goFullscreen(true, () => fsTip.classList.remove('hidden')); });
-document.getElementById('fs-tip-close').addEventListener('click', () => fsTip.classList.add('hidden'));
+const fsBtn = document.getElementById('fs-btn');
+fsBtn.addEventListener('click', () => { audio.start(); goFullscreen(true, () => show('guide')); });
+/** Lần đầu chơi bằng cảm ứng (chưa chạy dạng app) → mở hướng dẫn một lần. */
+function maybeShowGuide() {
+  if (isStandalone() || store.settings.guideSeen || ui.current !== 'menu') return;
+  store.saveSettings({ guideSeen: true });
+  show('guide');
+}
 const hud = createHud(ui.raceEl);
 
 const menuVideo = document.getElementById('menu-video');
@@ -86,7 +92,7 @@ function playMenuVideo() { if (!menuVideo || reducedMotion) return; menuVideo.pl
 window.addEventListener('pointerdown', () => { if (ui.current === 'menu') playMenuVideo(); });
 function show(name) {
   ui.show(name);
-  if (menuVideo) { const onMenu = name === 'menu'; menuVideo.classList.toggle('hidden', !onMenu); if (onMenu) playMenuVideo(); else menuVideo.pause(); }
+  if (menuVideo) { const onMenu = name === 'menu' || name === 'guide'; menuVideo.classList.toggle('hidden', !onMenu); if (onMenu) playMenuVideo(); else menuVideo.pause(); }
   touch.setRacing(name === 'race');
   fsBtn.classList.toggle('hidden', !(touch.enabled && !isStandalone() && name === 'menu'));
   if (name === 'race' && touch.enabled) goFullscreen(false, () => {});
@@ -205,4 +211,5 @@ if (params.get('car') && carById(params.get('car'))) { app.carId = params.get('c
 if (params.get('track') && app.tracks.some(t => t.id === params.get('track'))) app.trackId = params.get('track');
 refreshCars();
 show('menu');
+if (touch.enabled) maybeShowGuide();
 requestAnimationFrame(frame);

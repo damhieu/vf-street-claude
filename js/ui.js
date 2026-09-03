@@ -34,6 +34,7 @@ export function createUI(root, on) {
   menuRow.append(
     btn('Chơi ngay', 'primary', () => on.toCars()),
     btn('Cài đặt', '', () => on.toSettings()),
+    btn('Chơi trên điện thoại', 'touch-only', () => on.toGuide()),
     btn('Credits', '', () => on.toCredits()),
     el('div', 'keys', '<span><b>↑ ↓</b> ga / phanh</span><span><b>← →</b> đánh lái</span><span><b>Esc</b> tạm dừng</span><span><b>M</b> tắt tiếng</span>'),
   );
@@ -95,6 +96,42 @@ export function createUI(root, on) {
   const credActions = el('div', 'actions');
   credActions.append(btn('Quay lại', 'primary', () => on.toMenu()));
   credits.append(credActions);
+
+  // ---- Hướng dẫn chơi trên điện thoại ----
+  const guide = screen('guide', 'overlay guide');
+  const share = '<svg class="ico" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  guide.append(el('div', 'box', `
+    <h2 class="display">Chơi trên điện thoại</h2>
+    <div class="cols">
+      <div class="col">
+        <div class="os">🎮 Điều khiển</div>
+        <ol>
+          <li><b>Xoay ngang</b> điện thoại</li>
+          <li>Pad <b>◀ ▶</b> bên trái để đánh lái</li>
+          <li>Nút <b>GA</b> / <b>PHANH</b> bên phải — giữ để ga, phanh</li>
+          <li><b>❚❚</b> góc trên phải để tạm dừng</li>
+          <li>Chạm vào thẻ xe, thẻ đường để chọn</li>
+        </ol>
+      </div>
+      <div class="col">
+        <div class="os">🚀 Chơi như một app</div>
+        <p class="tip">Thêm game vào màn hình chính để mở nhanh và chơi <b>toàn màn hình</b>, không còn thanh trình duyệt.</p>
+        <div class="os small">📱 iPhone — trình duyệt Safari</div>
+        <ol>
+          <li>Chạm biểu tượng <b>Chia sẻ</b> ${share} ở thanh dưới</li>
+          <li>Chọn <b>"Thêm vào MH chính"</b></li>
+          <li>Mở game từ icon <b>VF Street</b></li>
+        </ol>
+        <div class="os small">🤖 Android — trình duyệt Chrome</div>
+        <ol>
+          <li>Chạm menu <b>⋮</b> góc trên phải</li>
+          <li>Chọn <b>"Thêm vào Màn hình chính"</b> (hoặc bấm <b>⛶</b> để toàn màn hình ngay)</li>
+        </ol>
+      </div>
+    </div>`));
+  const guideActions = el('div', 'actions');
+  guideActions.append(btn('Đã hiểu', 'primary', () => on.toMenu()));
+  guide.querySelector('.box').append(guideActions);
 
   // ---- Cài đặt ----
   const settings = screen('settings', 'overlay');

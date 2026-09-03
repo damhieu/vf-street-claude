@@ -8,6 +8,7 @@ export const DEFAULT_SETTINGS = Object.freeze({
   practice: false,
   muted: false,
   minimap: true,
+  guideSeen: false,
 });
 
 function fromRaw(raw) {
