@@ -30,12 +30,14 @@ export function createUI(root, on) {
     el('h1', 'display', 'VF <span>Street</span>'),
     el('p', null, 'Sáu mẫu VinFast, năm cung đường thật, một vạch đích. Vật lý theo thông số xe thật, AI không nhường, giao thông kiểu Việt Nam.'),
   );
+  const muteBtn = btn('🔊 Âm thanh', 'mute', () => on.toggleMute());
   const menuRow = el('div', 'row');
   menuRow.append(
     btn('Chơi ngay', 'primary', () => on.toCars()),
     btn('Cài đặt', '', () => on.toSettings()),
     btn('Chơi trên điện thoại', 'touch-only', () => on.toGuide()),
     btn('Credits', '', () => on.toCredits()),
+    muteBtn,
     el('div', 'keys', '<span><b>↑ ↓</b> ga / phanh</span><span><b>← →</b> đánh lái</span><span><b>Esc</b> tạm dừng</span><span><b>M</b> tắt tiếng</span>'),
   );
   menu.append(menuRow);
@@ -266,6 +268,7 @@ export function createUI(root, on) {
 
   return {
     get current() { return current; },
+    setMuted(m) { muteBtn.textContent = m ? '🔇 Đang tắt tiếng' : '🔊 Âm thanh'; muteBtn.classList.toggle('off', !!m); },
     show,
     press,
     raceEl: screens.race,

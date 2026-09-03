@@ -35,8 +35,9 @@ function fitStage() {
 fitStage();
 addEventListener('resize', fitStage);
 addEventListener('orientationchange', () => setTimeout(fitStage, 80));
-window.addEventListener('keydown', () => audio.start(), { once: true });
+window.addEventListener('keydown', () => audio.start());
 window.addEventListener('pointerdown', () => audio.start());
+document.addEventListener('visibilitychange', () => { if (!document.hidden) audio.resume(); });
 const app = {
   carId: 'vf7',
   paint: null,
@@ -54,6 +55,7 @@ const ui = createUI(document.getElementById('ui'), {
   toTracks: () => { refreshTracks(); show('tracks'); },
   toSettings: () => { ui.setSettings(store.settings); show('settings'); },
   toCredits: () => show('credits'),
+  toggleMute: () => toggleMute(),
   toGuide: () => show('guide'),
   pickCar(id) { app.carId = id; app.paint = carById(id).paints[0].hex; refreshCars(); },
   pickPaint(hex) { app.paint = hex; refreshCars(); },
@@ -90,6 +92,13 @@ const menuVideo = document.getElementById('menu-video');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 function playMenuVideo() { if (!menuVideo || reducedMotion) return; menuVideo.play().catch(() => {}); } // iOS tiết kiệm pin chặn autoplay → poster hiện, thử lại khi chạm
 window.addEventListener('pointerdown', () => { if (ui.current === 'menu') playMenuVideo(); });
+function toggleMute() {
+  audio.start();
+  store.saveSettings({ muted: !store.settings.muted });
+  ui.setMuted(store.settings.muted);
+  if (ui.current === 'settings') ui.setSettings(store.settings);
+}
+
 function show(name) {
   ui.show(name);
   if (menuVideo) { const onMenu = name === 'menu' || name === 'guide'; menuVideo.classList.toggle('hidden', !onMenu); if (onMenu) playMenuVideo(); else menuVideo.pause(); }
@@ -105,9 +114,9 @@ function refreshTracks() {
 }
 
 input.setOnPress((action) => {
+  if (action === 'mute') { toggleMute(); return; } // M dùng được ở mọi màn hình
   if (ui.current === 'race') {
     if (action === 'back') { app.paused = true; show('pause'); }
-    else if (action === 'mute') store.saveSettings({ muted: !store.settings.muted });
     return;
   }
   ui.press(action);
@@ -193,6 +202,14 @@ if (DEBUG) {
     step(n = 60) { for (let i = 0; i < n; i++) stepOnce(); if (app.renderer) { app.renderer.draw(); hud.update(app.race.snapshot()); } return app.race?.snapshot(); },
     state: () => app.race?.snapshot(),
     setInput: v => input.setVirtual(v),
+    audio,
+    async startRace(trackId, carId, weatherId) {
+      if (carId) { app.carId = carId; app.paint = carById(carId).paints[0].hex; }
+      if (trackId) app.trackId = trackId;
+      if (weatherId) params.set('weather', weatherId);
+      await startRace();
+      return ui.current;
+    },
     pause: v => { app.paused = v; },
     bench(n = 300) {
       if (!app.race) return null;
@@ -206,6 +223,7 @@ if (DEBUG) {
   };
 }
 
+ui.setMuted(store.settings.muted);
 await loadTrackIndex();
 if (params.get('car') && carById(params.get('car'))) { app.carId = params.get('car'); app.paint = carById(app.carId).paints[0].hex; }
 if (params.get('track') && app.tracks.some(t => t.id === params.get('track'))) app.trackId = params.get('track');
