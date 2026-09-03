@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>VF Street — Đua xe điện Việt Nam</title>
+  <meta name="description" content="Game đua xe VinFast trên cung đường thật Việt Nam: Hải Vân, Mã Pí Lèng, Ô Quy Hồ, cao tốc Hà Nội – Hải Phòng, vòng cầu Đà Nẵng. Vật lý theo thông số xe thật, độ khó cao.">
+  <!-- Icon khi Thêm vào Màn hình chính (iPhone) + PWA (Android) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="VF Street">
+  <meta name="theme-color" content="#0b0c10">
+  <link rel="apple-touch-icon" href="assets/icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="manifest" href="site.webmanifest">
+  <!-- Ảnh xem trước khi chia sẻ link (Zalo, Messenger, Facebook) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VF Street — Đua xe VinFast trên đường thật Việt Nam">
+  <meta property="og:description" content="Sáu xe VinFast, năm cung đường thật, độ khó cao. Chơi ngay trên máy tính hoặc điện thoại (xoay ngang).">
+  <meta property="og:image" content="https://damhieu.github.io/vf-street-claude/assets/og-image.jpg">
+  <meta property="og:url" content="https://damhieu.github.io/vf-street-claude/">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game" width="960" height="540"></canvas>
+    <div id="ui"></div>
+    <div id="touch-ui" class="hidden">
+      <div id="tpad"><div class="tbtn" id="tbtn-left">◀</div><div class="tbtn" id="tbtn-right">▶</div></div>
+      <div id="tacts"><div class="tbtn act" id="tbtn-brake">PHANH</div><div class="tbtn act gas" id="tbtn-gas">GA</div></div>
+      <button id="tbtn-pause" type="button">❚❚</button>
+    </div>
+    <button id="fs-btn" class="hidden" type="button" title="Toàn màn hình">⛶</button>
+    <div id="fs-tip" class="hidden">
+      <div class="box">
+        <h3>Chơi toàn màn hình trên iPhone</h3>
+        <p>Safari không cho web ẩn thanh địa chỉ. Cách làm: bấm nút <b>Chia sẻ</b> (ô vuông có mũi tên lên) → chọn <b>Thêm vào Màn hình chính</b> → mở game từ icon <b>VF Street</b>. Trên Android bấm ⛶ là đủ.</p>
+        <button id="fs-tip-close" type="button">Đã hiểu</button>
+      </div>
+    </div>
+  </div>
+  <div id="rotate-hint"><div>📱↻<br>Xoay ngang điện thoại để chơi</div></div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

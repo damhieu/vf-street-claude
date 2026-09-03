@@ -1,0 +1,189 @@
+[
+  {
+    "id": "haivan",
+    "name": "Đèo Hải Vân",
+    "place": "Đà Nẵng – Huế · QL1",
+    "desc": "Con đèo huyền thoại ven biển: 2 làn, hộ lan tôn sóng, xe máy đông vì bị cấm qua hầm. 8 km cuối leo từ lưng đèo lên Hải Vân Quan 496 m.",
+    "kind": "sprint",
+    "bbox": [
+      16.12,
+      108.09,
+      16.24,
+      108.2
+    ],
+    "filter": "[\"highway\"~\"^(trunk|primary|secondary|tertiary|unclassified)$\"]",
+    "start": [
+      16.141953,
+      108.133141
+    ],
+    "via": [],
+    "end": [
+      16.18745,
+      108.13072
+    ],
+    "expectedLengthM": 8000,
+    "roadProfile": "ql2",
+    "scenery": "coast",
+    "weatherPresets": [
+      "clear",
+      "rain",
+      "fog"
+    ],
+    "trafficProfile": "passBikes",
+    "maxSlope": 0.1
+  },
+  {
+    "id": "mapileng",
+    "name": "Đèo Mã Pí Lèng",
+    "place": "Hà Giang · QL4C Đường Hạnh Phúc",
+    "desc": "Đường vách đá trên hẻm Tu Sản, mặt đường hẹp và xấu từng đoạn, vực sâu một bên. Từ phía Đồng Văn về Mèo Vạc.",
+    "kind": "sprint",
+    "bbox": [
+      23.17,
+      105.36,
+      23.28,
+      105.45
+    ],
+    "filter": "[\"highway\"=\"trunk\"][\"ref\"=\"QL.4C\"]",
+    "start": [
+      23.250774,
+      105.394041
+    ],
+    "via": [],
+    "end": [
+      23.208404,
+      105.416053
+    ],
+    "expectedLengthM": 8500,
+    "roadProfile": "ql2narrow",
+    "scenery": "karst",
+    "weatherPresets": [
+      "clear",
+      "haze"
+    ],
+    "trafficProfile": "passLight"
+  },
+  {
+    "id": "oquyho",
+    "name": "Đèo Ô Quy Hồ",
+    "place": "Sa Pa – Lai Châu · QL4D",
+    "desc": "Đèo dài nhất Việt Nam, đỉnh 2.035 m. Đổ đèo phía Sa Pa trong sương mù dày, mặt đường ẩm, xe khách lên xuống liên tục.",
+    "kind": "sprint",
+    "bbox": [
+      22.33,
+      103.74,
+      22.38,
+      103.82
+    ],
+    "filter": "[\"highway\"~\"^(trunk|primary)$\"][\"ref\"~\"4D\"]",
+    "start": [
+      22.352747,
+      103.76549
+    ],
+    "via": [],
+    "end": [
+      22.368358,
+      103.802269
+    ],
+    "expectedLengthM": 7400,
+    "roadProfile": "ql2",
+    "scenery": "pine",
+    "weatherPresets": [
+      "fog",
+      "clear",
+      "rain"
+    ],
+    "trafficProfile": "passBus",
+    "maxSlope": 0.1
+  },
+  {
+    "id": "ct04",
+    "name": "Cao tốc Hà Nội – Hải Phòng",
+    "place": "Hải Phòng · CT.04",
+    "desc": "Cao tốc 3 làn giới hạn 120 km/h, đoạn gần Hải Phòng qua cầu Mỹ Đức và cầu Đa Độ. Xe con, xe khách giường nằm chạy dày; nơi duy nhất mở hết đỉnh tốc.",
+    "kind": "sprint",
+    "bbox": [
+      20.75,
+      106.58,
+      20.79,
+      106.71
+    ],
+    "filter": "[\"highway\"=\"motorway\"]",
+    "start": [
+      20.7728,
+      106.5939
+    ],
+    "via": [],
+    "end": [
+      20.7666,
+      106.6962
+    ],
+    "expectedLengthM": 10700,
+    "roadProfile": "motorway3",
+    "scenery": "delta",
+    "weatherPresets": [
+      "clear",
+      "rain",
+      "dusk"
+    ],
+    "trafficProfile": "motorway",
+    "elevSmoothM": 300,
+    "maxSlope": 0.04
+  },
+  {
+    "id": "danang",
+    "name": "Vòng cầu Đà Nẵng",
+    "place": "Đà Nẵng · Cầu Rồng – Cầu Sông Hàn",
+    "desc": "Circuit đường phố ban đêm hai bờ sông Hàn (đường đóng để đua): Bạch Đằng → Lê Duẩn → Cầu Sông Hàn → Ngô Quyền → Võ Văn Kiệt → Cầu Rồng. Góc phố 90°, phanh gắt, không giao thông.",
+    "kind": "loop",
+    "laps": 3,
+    "bbox": [
+      16.05,
+      108.215,
+      16.08,
+      108.24
+    ],
+    "filter": "[\"highway\"~\"^(trunk|primary|secondary|tertiary|trunk_link|primary_link|secondary_link)$\"]",
+    "start": [
+      16.062,
+      108.2241
+    ],
+    "via": [
+      [
+        16.07175,
+        108.22503
+      ],
+      [
+        16.07253,
+        108.23061
+      ],
+      [
+        16.0655,
+        108.2326
+      ],
+      [
+        16.06145,
+        108.23309
+      ],
+      [
+        16.06136,
+        108.23144
+      ]
+    ],
+    "end": [
+      16.06114,
+      108.22456
+    ],
+    "expectedLengthM": 4100,
+    "roadProfile": "urban4",
+    "scenery": "city",
+    "weatherPresets": [
+      "night",
+      "nightRain"
+    ],
+    "trafficProfile": null,
+    "elevSmoothM": 100,
+    "maxSlope": 0.06,
+    "ignoreOneway": true
+  }
+]
