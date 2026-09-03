@@ -1,6 +1,7 @@
 // Các màn hình DOM (menu, chọn xe, chọn đường, tạm dừng, kết quả, credits, cài đặt). Không chứa logic game.
 import { fmtTime } from './util.js';
 import { WEATHER } from './weather.js';
+import { GAME_INFO } from './gameinfo.js';
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 function el(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
@@ -37,6 +38,7 @@ export function createUI(root, on) {
     el('div', 'keys', '<span><b>↑ ↓</b> ga / phanh</span><span><b>← →</b> đánh lái</span><span><b>Esc</b> tạm dừng</span><span><b>M</b> tắt tiếng</span>'),
   );
   menu.append(menuRow);
+  menu.append(el('div', 'version-line', `Thiết kế bởi ${esc(GAME_INFO.designer)} · v${esc(GAME_INFO.version)} · build ${esc(GAME_INFO.built)}`));
 
   // ---- Chọn xe ----
   const cars = screen('cars', 'pick');
@@ -87,7 +89,8 @@ export function createUI(root, on) {
     <p><b>Độ cao</b>: SRTM 30 m, NASA/USGS, truy xuất qua Open Topo Data (opentopodata.org).</p>
     <p><b>Thông số xe</b>: tổng hợp từ Wikipedia, oto.com.vn, bonbanh.com, VnExpress, Tuổi Trẻ. Hình xe vẽ bằng canvas theo tỉ lệ công bố; không dùng ảnh chụp.</p>
     <p><b>Engine</b>: pseudo-3D kiểu OutRun/NFS cổ điển, viết bằng JavaScript thuần. Không sử dụng thư viện ngoài.</p>
-    <p class="dim">VF Street là dự án cá nhân không liên kết với VinFast.</p>`));
+    <p class="dim">VF Street là dự án cá nhân không liên kết với VinFast.</p>
+    <p class="dim">Thiết kế bởi ${esc(GAME_INFO.designer)} · Phiên bản ${esc(GAME_INFO.version)} · Build ${esc(GAME_INFO.built)}</p>`));
   const credActions = el('div', 'actions');
   credActions.append(btn('Quay lại', 'primary', () => on.toMenu()));
   credits.append(credActions);

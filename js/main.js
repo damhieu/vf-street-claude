@@ -13,7 +13,9 @@ import * as effects from './effects.js';
 import { pickWeather } from './weather.js';
 import { createAudio } from './audio.js';
 import { createTouch, goFullscreen, isStandalone } from './touch.js';
+import { GAME_INFO } from './gameinfo.js';
 
+console.log(`VF Street v${GAME_INFO.version} — build ${GAME_INFO.built} — thiết kế bởi ${GAME_INFO.designer}`);
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 const params = new URLSearchParams(location.search);
