@@ -80,8 +80,13 @@ fsBtn.addEventListener('click', () => { audio.start(); goFullscreen(true, () => 
 document.getElementById('fs-tip-close').addEventListener('click', () => fsTip.classList.add('hidden'));
 const hud = createHud(ui.raceEl);
 
+const menuVideo = document.getElementById('menu-video');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function playMenuVideo() { if (!menuVideo || reducedMotion) return; menuVideo.play().catch(() => {}); } // iOS tiết kiệm pin chặn autoplay → poster hiện, thử lại khi chạm
+window.addEventListener('pointerdown', () => { if (ui.current === 'menu') playMenuVideo(); });
 function show(name) {
   ui.show(name);
+  if (menuVideo) { const onMenu = name === 'menu'; menuVideo.classList.toggle('hidden', !onMenu); if (onMenu) playMenuVideo(); else menuVideo.pause(); }
   touch.setRacing(name === 'race');
   fsBtn.classList.toggle('hidden', !(touch.enabled && !isStandalone() && name === 'menu'));
   if (name === 'race' && touch.enabled) goFullscreen(false, () => {});

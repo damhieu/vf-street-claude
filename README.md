@@ -53,4 +53,4 @@ Mỗi tuyến: Overpass API (way trong bbox theo filter) → đồ thị node �
 
 ## Ghi công
 
-Dữ liệu đường © OpenStreetMap contributors (ODbL 1.0) — https://www.openstreetmap.org/copyright. Độ cao SRTM (NASA/USGS) qua Open Topo Data. Thông số xe tổng hợp từ Wikipedia, oto.com.vn, bonbanh.com, VnExpress, Tuổi Trẻ. Dự án cá nhân, không liên kết với VinFast.
+Video nền màn hình chờ tạo bằng Higgsfield AI (ảnh nền Nano Banana → dựng chuyển động MiniMax H3), cảnh hư cấu lấy cảm hứng từ đèo Hải Vân. Dữ liệu đường © OpenStreetMap contributors (ODbL 1.0) — https://www.openstreetmap.org/copyright. Độ cao SRTM (NASA/USGS) qua Open Topo Data. Thông số xe tổng hợp từ Wikipedia, oto.com.vn, bonbanh.com, VnExpress, Tuổi Trẻ. Dự án cá nhân, không liên kết với VinFast.

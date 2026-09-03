@@ -89,6 +89,7 @@ export function createUI(root, on) {
     <p><b>Độ cao</b>: SRTM 30 m, NASA/USGS, truy xuất qua Open Topo Data (opentopodata.org).</p>
     <p><b>Thông số xe</b>: tổng hợp từ Wikipedia, oto.com.vn, bonbanh.com, VnExpress, Tuổi Trẻ. Hình xe vẽ bằng canvas theo tỉ lệ công bố; không dùng ảnh chụp.</p>
     <p><b>Engine</b>: pseudo-3D kiểu OutRun/NFS cổ điển, viết bằng JavaScript thuần. Không sử dụng thư viện ngoài.</p>
+    <p><b>Video nền menu</b>: tạo bằng Higgsfield AI (ảnh nền Nano Banana, dựng chuyển động MiniMax H3). Cảnh hư cấu lấy cảm hứng từ đèo Hải Vân.</p>
     <p class="dim">VF Street là dự án cá nhân không liên kết với VinFast.</p>
     <p class="dim">Thiết kế bởi ${esc(GAME_INFO.designer)} · Phiên bản ${esc(GAME_INFO.version)} · Build ${esc(GAME_INFO.built)}</p>`));
   const credActions = el('div', 'actions');
