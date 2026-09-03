@@ -6,7 +6,13 @@ Game đua kiểu Need for Speed cổ điển (pseudo-3D) chạy trên trình duy
 - **5 cung đường thật** dựng từ OpenStreetMap + độ cao SRTM: Đèo Hải Vân, Đèo Mã Pí Lèng, Đèo Ô Quy Hồ (sương mù), Cao tốc Hà Nội – Hải Phòng, Vòng cầu Đà Nẵng (circuit đêm).
 - **Độ khó cao**: AI cùng vật lý với người chơi, phanh muộn, vượt sang làn ngược, chặn khi bị áp sát, không rubber-band; giao thông hai chiều kiểu Việt Nam (xe máy, xe khách, xe tải, container); sương mù, mưa, đêm; không trợ lái, không nitro.
 
-## Chạy
+## Chơi online
+
+**https://damhieu.github.io/vf-street-claude/** — mở trên máy tính hoặc điện thoại, không cần cài gì.
+
+**Trên điện thoại**: xoay ngang máy, pad ◀ ▶ bên trái để lái, nút GA / PHANH bên phải, ❚❚ để tạm dừng. Trên iPhone bấm ⛶ ở menu để xem cách *Thêm vào Màn hình chính* (chơi toàn màn hình, có icon VF Street); trên Android bấm ⛶ là vào toàn màn hình.
+
+## Chạy local
 
 ```bash
 python3 -m http.server 8080
